@@ -1,4 +1,6 @@
-﻿@using RecipeApp.Areas.Identity.Data;
+﻿@using Microsoft.AspNetCore.Identity;
+@using RecipeApp.Areas.Identity.Data;
+@using RecipeApp.Areas.Identity.Pages.Account.Manage;
 @inject SignInManager<RecipeAppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
