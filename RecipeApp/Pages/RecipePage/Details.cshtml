@@ -1,0 +1,55 @@
+﻿@page
+@model RecipeApp.Pages.RecipePage.DetailsModel
+@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div style="width: 100%; height: 50vh; background-image: url(data:image/jpg;base64,@Convert.ToBase64String(Model.Recipe.ImageData)); background-size: cover; "></div>
+<br /><h1>@Html.DisplayFor(model => model.Recipe.Name)</h1>
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            <i class="bi bi-stopwatch-fill"></i> Prepare time
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Recipe.PrepareTime) mins
+        </dd>
+        <dt class="col-sm-2">
+            <i class="bi bi-people-fill"></i> Portions
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Recipe.Portions) people
+        </dd>
+        <dt class="col-sm-2">
+            <i class="bi bi-star-half"></i> @Html.DisplayNameFor(model => model.Recipe.Likes)
+        </dt>
+        <dd class="col-sm-10">
+            
+            <form method="POST">
+                <span class="fs-5">@Html.DisplayFor(model => model.Recipe.Likes)</span>
+                <input type="submit" asp-page-handler="Like" asp-route-id="@Model.Recipe?.Id" value="@Model.LikeDislike" class="btn btn-outline-secondary btn-sm" />
+            </form>
+        </dd>
+    </dl>
+    <hr />
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Recipe.Description)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Recipe.Description)
+    </dd>
+</div>
+
+        <div>
+            @if (User.Identity.IsAuthenticated && Model.Recipe?.UserId == UserManager.GetUserId(User))
+            {
+                <a asp-page="./Edit" asp-route-id="@Model.Recipe?.Id">Edit</a><span> | </span>
+            }
+            <a asp-page="./Index">Back to List</a>
+        </div>
+
+
