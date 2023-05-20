@@ -1,6 +1,7 @@
 ﻿@page
+@using RecipeApp.Areas.Identity.Data;
 @model RecipeApp.Pages.RecipePage.IndexModel
-@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> UserManager
+@inject Microsoft.AspNetCore.Identity.UserManager<RecipeAppUser> UserManager
 
 @{
     ViewData["Title"] = "Index";

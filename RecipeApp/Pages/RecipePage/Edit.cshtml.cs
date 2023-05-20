@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RecipeApp.Areas.Identity.Data;
 using RecipeApp.Data;
 using RecipeApp.Models;
 
@@ -19,9 +20,9 @@ namespace RecipeApp.Pages.RecipePage
     public class EditModel : PageModel
     {
         private readonly RecipeApp.Data.ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager; 
+        private readonly UserManager<RecipeAppUser> _userManager; 
 
-        public EditModel(RecipeApp.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public EditModel(RecipeApp.Data.ApplicationDbContext context, UserManager<RecipeAppUser> userManager)
         {
             _context = context;
             _userManager = userManager;

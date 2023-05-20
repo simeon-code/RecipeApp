@@ -1,6 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using RecipeApp.Areas.Identity.Data;
+@inject SignInManager<RecipeAppUser> SignInManager
+@inject UserManager<RecipeAppUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

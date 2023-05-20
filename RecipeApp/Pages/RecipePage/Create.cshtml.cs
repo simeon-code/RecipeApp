@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RecipeApp.Areas.Identity.Data;
 using RecipeApp.Data;
 using RecipeApp.Models;
 
@@ -16,9 +17,9 @@ namespace RecipeApp.Pages.RecipePage
     public class CreateModel : PageModel
     {
         private readonly RecipeApp.Data.ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<RecipeAppUser> _userManager;
 
-        public CreateModel(RecipeApp.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public CreateModel(RecipeApp.Data.ApplicationDbContext context, UserManager<RecipeAppUser> userManager)
         {
             _context = context;
             _userManager = userManager;
