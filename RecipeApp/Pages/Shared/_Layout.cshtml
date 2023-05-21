@@ -25,9 +25,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/RecipePage/Index">Recipes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/RecipePage/ProfileRecipes">My Recipes</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -42,7 +45,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - RecipeApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - RecipeApp - NBU Project - Simeon Kozhuharov
         </div>
     </footer>
 

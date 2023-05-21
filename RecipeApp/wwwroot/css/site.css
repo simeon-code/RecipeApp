@@ -18,3 +18,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+.caption-3 figcaption {
+    position: absolute;
+    transform: translateY(-100%);
+}

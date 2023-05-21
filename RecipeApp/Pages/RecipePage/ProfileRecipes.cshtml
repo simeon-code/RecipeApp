@@ -1,0 +1,92 @@
+﻿@page
+@using RecipeApp.Areas.Identity.Data;
+@model RecipeApp.Pages.RecipePage.ProfileRecipesModel
+@inject Microsoft.AspNetCore.Identity.UserManager<RecipeAppUser> UserManager
+
+@{
+    ViewData["Title"] = "Profile Recipes";
+}
+
+<h1>My recipes</h1>
+<br />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New</a>
+    </p>
+}
+
+
+<form>
+    <div class="input-group">
+        <input type="text" asp-for="SearchString" class="form-control" placeholder="What do you want to eat?" />
+        <select asp-for="RecipeCategory" asp-items="Model.Categories" class="form-select">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Search" class="btn btn-secondary" />
+    </div>
+</form>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:250px;"></th>
+            <th>
+                Name
+            </th>
+            <th>
+                <i class="bi bi-stopwatch-fill"></i>
+            </th>
+            <th>
+                <i class="bi bi-people-fill"></i>
+            </th>
+            <th>
+                <i class="bi bi-star-fill"></i>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recipe)
+        {
+            if (item.UserId == UserManager.GetUserId(User)){
+                <tr>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.Id" style="text-decoration:none;">
+                            <div style="width: 200px; height: 200px; background-image: url(data:image/jpg;base64,@Convert.ToBase64String(item.ImageData)); background-size: cover; "></div>
+                        </a>
+
+                    </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.Id" style="text-decoration:none; color: black;">
+                            <h4>@Html.DisplayFor(modelItem => item.Name)</h4>
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrepareTime) mins
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Portions) portions
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Likes)
+                    </td>
+
+                    <td>
+                        @if (User.Identity.IsAuthenticated && item.UserId == UserManager.GetUserId(User))
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+
+                            <span> | </span>
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
