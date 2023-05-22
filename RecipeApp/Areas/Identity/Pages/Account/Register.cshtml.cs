@@ -19,8 +19,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using RecipeApp.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using RecipeApp.Areas.Identity.Data;
 
 namespace RecipeApp.Areas.Identity.Pages.Account
 {
